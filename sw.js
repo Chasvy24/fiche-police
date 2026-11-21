@@ -1,7 +1,7 @@
-// Fiche de police : ouverture sans connexion de l'espace hôte. Version 1
+// Fiche de police : ouverture sans connexion de l'espace hôte. Version 2
 // Aucune donnée personnelle ne passe par ce fichier.
 const PREFIX = 'fiche-police-';
-const CACHE = PREFIX + 'v1';
+const CACHE = PREFIX + 'v2';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './apple-touch-icon.png', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));

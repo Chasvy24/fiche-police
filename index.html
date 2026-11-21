@@ -151,10 +151,11 @@ const store = {
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } },
   del(k) { try { localStorage.removeItem(k); } catch (e) {} }
 };
-async function shareOrDownload(file, { title = "", text = "" } = {}) {
+async function shareOrDownload(file) {
   if (navigator.canShare && navigator.share) {
     let ok = false; try { ok = navigator.canShare({ files: [file] }); } catch (e) { ok = false; }
-    if (ok) { try { await navigator.share({ files: [file], title, text }); return "shared"; } catch (e) { if (e && e.name === "AbortError") return "cancel"; } }
+    // Le fichier seul : avec un texte en plus, WhatsApp sur iPhone n'envoie souvent que le texte.
+    if (ok) { try { await navigator.share({ files: [file] }); return "shared"; } catch (e) { if (e && e.name === "AbortError") return "cancel"; } }
   }
   downloadFile(file); return "downloaded";
 }
@@ -195,12 +196,13 @@ const T = {
     photoMissing: "Ajoutez la photo de la pièce d'identité.", signMissing: "Signature manquante.", consentMissing: "Cochez la case de confirmation.",
     fix: "Il manque des informations : les champs à compléter sont signalés en rouge.",
     doneTitle: "Votre fiche est prête", doneText: "Envoyez-la maintenant à {host}. Le fichier contient vos informations et la photo de votre pièce d'identité.",
-    send: "Envoyer la fiche", save: "Enregistrer le PDF", whatsapp: "Ouvrir WhatsApp avec {host}", email: "Écrire un e-mail à {host}",
-    attachHint: "Si l'envoi direct ne fonctionne pas : enregistrez le PDF, puis joignez-le dans WhatsApp ou dans un e-mail.",
+    send: "Envoyer la fiche (PDF)", sendHint: "Choisissez WhatsApp (ou Mail), puis la conversation avec {host} : le PDF part en pièce jointe.",
+    otherWay: "Autre façon de l'envoyer", save: "1. Enregistrer le PDF", whatsapp: "2. Écrire à {host} sur WhatsApp", email: "2. Écrire à {host} par e-mail",
+    attachHint: "Dans la conversation, touchez « + » (ou le trombone), puis Document, et choisissez le PDF enregistré. WhatsApp ne peut pas le joindre tout seul.",
     edit: "Modifier la fiche", erase: "Effacer mes informations de ce téléphone", erased: "Vos informations ont été effacées de ce téléphone.",
     draft: "Vos réponses sont gardées sur ce téléphone en attendant l'envoi (sans les photos ni la signature).",
     pdfError: "Le PDF n'a pas pu être créé. Vérifiez la connexion internet et réessayez.", shared: "Fiche envoyée.", downloaded: "PDF enregistré.",
-    msgText: "Fiche de police pour {property} ({arr} → {dep})", badLink: "Ce lien est incomplet. Demandez à votre hôte de vous renvoyer le lien de la fiche de police."
+    msgText: "Bonjour, voici ma fiche de police pour {property} ({arr} → {dep}). Le PDF est en pièce jointe.", badLink: "Ce lien est incomplet. Demandez à votre hôte de vous renvoyer le lien de la fiche de police."
   },
   en: {
     title: "Police registration form", sub: "Required for every stay in Morocco",
@@ -225,12 +227,13 @@ const T = {
     photoMissing: "Please add a photo of your ID document.", signMissing: "Signature missing.", consentMissing: "Please tick the confirmation box.",
     fix: "Some information is missing: the fields to complete are shown in red.",
     doneTitle: "Your form is ready", doneText: "Please send it to {host} now. The file contains your information and the photo of your ID document.",
-    send: "Send the form", save: "Save the PDF", whatsapp: "Open WhatsApp with {host}", email: "Email {host}",
-    attachHint: "If sending directly does not work: save the PDF, then attach it in WhatsApp or in an email.",
+    send: "Send the form (PDF)", sendHint: "Choose WhatsApp (or Mail), then your chat with {host}: the PDF is sent as an attachment.",
+    otherWay: "Another way to send it", save: "1. Save the PDF", whatsapp: "2. Message {host} on WhatsApp", email: "2. Email {host}",
+    attachHint: "In the chat, tap “+” (or the paperclip), then Document, and choose the saved PDF. WhatsApp cannot attach it by itself.",
     edit: "Edit the form", erase: "Delete my information from this phone", erased: "Your information has been deleted from this phone.",
     draft: "Your answers are kept on this phone until you send the form (without the photos or the signature).",
     pdfError: "The PDF could not be created. Check your internet connection and try again.", shared: "Form sent.", downloaded: "PDF saved.",
-    msgText: "Police registration form for {property} ({arr} → {dep})", badLink: "This link is incomplete. Please ask your host to send you the link again."
+    msgText: "Hello, here is my police registration form for {property} ({arr} → {dep}). The PDF is attached.", badLink: "This link is incomplete. Please ask your host to send you the link again."
   },
   ar: {
     title: "استمارة الشرطة", sub: "إلزامية لكل إقامة في المغرب",
@@ -255,12 +258,13 @@ const T = {
     photoMissing: "يُرجى إضافة صورة وثيقة الهوية.", signMissing: "التوقيع ناقص.", consentMissing: "يُرجى تأكيد الخانة.",
     fix: "بعض المعلومات ناقصة: الحقول المطلوب إكمالها مشار إليها باللون الأحمر.",
     doneTitle: "استمارتكم جاهزة", doneText: "أرسلوها الآن إلى {host}. يحتوي الملف على معلوماتكم وصورة وثيقة هويتكم.",
-    send: "إرسال الاستمارة", save: "حفظ ملف PDF", whatsapp: "فتح واتساب مع {host}", email: "مراسلة {host} عبر البريد الإلكتروني",
-    attachHint: "إذا لم ينجح الإرسال المباشر: احفظوا ملف PDF ثم أرفقوه في واتساب أو في بريد إلكتروني.",
+    send: "إرسال الاستمارة (PDF)", sendHint: "اختاروا واتساب (أو البريد)، ثم المحادثة مع {host}: سيُرسل ملف PDF كمرفق.",
+    otherWay: "طريقة أخرى للإرسال", save: "1. حفظ ملف PDF", whatsapp: "2. مراسلة {host} عبر واتساب", email: "2. مراسلة {host} عبر البريد الإلكتروني",
+    attachHint: "في المحادثة، اضغطوا على «+» (أو مشبك الورق)، ثم «مستند»، واختاروا ملف PDF المحفوظ. لا يستطيع واتساب إرفاقه تلقائياً.",
     edit: "تعديل الاستمارة", erase: "حذف معلوماتي من هذا الهاتف", erased: "تم حذف معلوماتكم من هذا الهاتف.",
     draft: "تُحفظ إجاباتكم على هذا الهاتف إلى حين الإرسال (بدون الصور والتوقيع).",
     pdfError: "تعذّر إنشاء ملف PDF. تحققوا من الاتصال بالإنترنت وحاولوا مجدداً.", shared: "تم إرسال الاستمارة.", downloaded: "تم حفظ ملف PDF.",
-    msgText: "استمارة الشرطة — {property} ({arr} → {dep})", badLink: "هذا الرابط غير مكتمل. يُرجى أن تطلبوا من المضيف إعادة إرسال الرابط."
+    msgText: "مرحباً، هذه استمارة الشرطة الخاصة بي لـ {property} ({arr} → {dep}). ملف PDF مرفق.", badLink: "هذا الرابط غير مكتمل. يُرجى أن تطلبوا من المضيف إعادة إرسال الرابط."
   }
 };
 // Libellés de la fiche PDF (en français, langue de la déclaration)
@@ -546,11 +550,16 @@ function renderDone() {
     <span class="done-ic">${icon("check")}</span><h2>${esc(tr("doneTitle"))}</h2><p>${esc(tr("doneText", { host }))}</p>
     <div class="stack" style="width:100%">
       <button type="button" class="btn" data-act="send">${icon("send")}${esc(tr("send"))}</button>
+      <p class="small muted" style="margin-top:-2px">${esc(tr("sendHint", { host }))}</p>
+    </div>
+    <div class="note stack" style="width:100%">
+      <b>${esc(tr("otherWay"))}</b>
       <button type="button" class="btn ghost" data-act="save">${icon("save")}${esc(tr("save"))}</button>
       ${L.whatsapp ? `<a class="btn ghost" href="https://wa.me/${L.whatsapp}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">${icon("chat")}${esc(tr("whatsapp", { host }))}</a>` : ""}
       ${L.email ? `<a class="btn ghost" href="mailto:${encodeURIComponent(L.email)}?subject=${encodeURIComponent(msg)}">${icon("mail")}${esc(tr("email", { host }))}</a>` : ""}
+      <span class="small">${esc(tr("attachHint"))}</span>
+      <span class="xs muted">${L.whatsapp ? `WhatsApp : +${esc(L.whatsapp)}` : ""}${L.whatsapp && L.email ? " · " : ""}${L.email ? esc(L.email) : ""}</span>
     </div>
-    <p class="small muted">${esc(tr("attachHint"))}${L.whatsapp ? ` WhatsApp : +${esc(L.whatsapp)}` : ""}${L.email ? ` · ${esc(L.email)}` : ""}</p>
     <div class="row"><button type="button" class="btn ghost small" data-act="edit">${esc(tr("edit"))}</button><button type="button" class="btn danger small" data-act="erase">${icon("trash")}${esc(tr("erase"))}</button></div>
   </section>`;
   window.scrollTo(0, 0);
@@ -568,7 +577,7 @@ async function guestAction(el) {
     try { G.pdf = await buildPDF(); G.done = true; saveDraft(); renderDone(); }
     catch (e) { el.disabled = false; el.innerHTML = icon("check") + esc(tr("create")); toast(tr("pdfError")); }
   }
-  else if (a === "send" && G.pdf) { const r = await shareOrDownload(G.pdf, { title: G.pdf.name, text: tr("msgText", { property: G.link.name, arr: fmtD(G.stay.arr), dep: fmtD(G.stay.dep) }) }); if (r === "shared") toast(tr("shared")); else if (r === "downloaded") toast(tr("downloaded")); }
+  else if (a === "send" && G.pdf) { const r = await shareOrDownload(G.pdf); if (r === "shared") toast(tr("shared")); else if (r === "downloaded") toast(tr("downloaded")); }
   else if (a === "save" && G.pdf) { downloadFile(G.pdf); toast(tr("downloaded")); }
   else if (a === "edit") { G.done = false; renderGuest(); }
   else if (a === "erase") { store.del(DRAFT_KEY()); G.travelers = [newTraveler()]; G.consent = false; G.pdf = null; G.done = false; G.showErrors = false; G.stay = { arr: G.link.arr, dep: G.link.dep }; renderGuest(); toast(tr("erased")); }
@@ -684,7 +693,7 @@ async function hostAction(el) {
   else if (a === "copy-base") { const p = H.props.find(x => x.id === H.sel); if (p) copyText(propLink(p), "Lien du logement copié."); }
   else if (a === "export") {
     const f = new File([JSON.stringify({ app: "fiche-police", version: 1, logements: H.props }, null, 2)], `fiche-police-logements-${todayStr()}.json`, { type: "application/json" });
-    const r = await shareOrDownload(f, { title: "Logements" }); if (r !== "cancel") toast("Liste des logements exportée.");
+    const r = await shareOrDownload(f); if (r !== "cancel") toast("Liste des logements exportée.");
   }
 }
 // Confirmation sans boîte de dialogue : un premier appui arme le bouton, le second confirme.
