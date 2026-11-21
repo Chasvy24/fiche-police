@@ -1,0 +1,16 @@
+{
+  "name": "Fiche de police",
+  "short_name": "Fiche police",
+  "description": "Fiche de police pour la location courte durée au Maroc : liens pour les voyageurs et réception des fiches.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F5F0EF",
+  "theme_color": "#3A2518",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

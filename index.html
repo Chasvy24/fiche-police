@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fiche de police</title>
+<meta name="description" content="Fiche de police pour les séjours en location courte durée au Maroc.">
+<meta name="theme-color" content="#3A2518">
+<meta name="format-detection" content="telephone=no">
+<meta name="robots" content="noindex">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Fiche police">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout : bandeau chocolat bordé d'un ruban zèbre, une colonne de cartes (max 760px), gros boutons pour le téléphone. */
+:root{
+  --bg:#F5F0EF; --surface:#FFFFFF; --surface-2:#F4EDEC; --ink:#2A1E17; --muted:#6B5A55; --line:#E5D9D8; --line-strong:#CDBDBC;
+  --brand:#6B3F1F; --on-brand:#FFFFFF; --brand-ink:#5E371B; --wine:#5A1226; --wine-soft:#EEDDE1;
+  --good:#2A7348; --good-soft:#E1F0E6; --bad:#C0281E; --bad-soft:#FCE3E0; --header:#3A2518;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --f-ar:"Geeza Pro","Noto Naskh Arabic","Segoe UI",Tahoma,system-ui,sans-serif;
+  --zebra:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='20'%3E%3Crect width='120' height='20' fill='%23F7F4F0'/%3E%3Cpath fill='%231C1512' d='M3 0h5q2 10-1 20H2q3-10 1-20zM15 0h4q-2 9 3 20h-6q-3-10-1-20zM27 0h6q1 10-3 20h-4q4-10 1-20zM41 0h3q3 8-1 20h-5q4-9 3-20zM51 0h6q-1 11 2 20h-5q-4-9-3-20zM64 0h4q3 10 0 20h-6q3-10 2-20zM76 0h5q-3 9 1 20h-4q-4-10-2-20zM88 0h6q2 9-2 20h-4q3-10 0-20zM101 0h4q2 10-2 20h-5q4-9 3-20zM111 0h5q-2 10 2 20h-5q-3-10-2-20z'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#14110F; --surface:#1E1915; --surface-2:#27211C; --ink:#F2ECE6; --muted:#B5A8A2; --line:#3A312C; --line-strong:#4E423D;
+  --brand:#8B5535; --on-brand:#FFFFFF; --brand-ink:#E6C9C3; --wine:#9E2F4F; --wine-soft:#3A1720;
+  --good:#62C48F; --good-soft:#163024; --bad:#FF7A6B; --bad-soft:#3E1A16; --header:#2A1A11;
+  color-scheme:dark;
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom,0px)}
+[dir="rtl"] body,body[dir="rtl"]{font-family:var(--f-ar)}
+[hidden]{display:none!important}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+:focus-visible{outline:2.5px solid var(--brand);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top{background:var(--header);color:#fff;position:relative;padding-top:env(safe-area-inset-top,0px)}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:12px;background:var(--zebra) repeat-x left center/auto 100%}
+.top-in{display:flex;align-items:center;gap:12px;padding-block:16px 26px}
+.top h1{font-size:1.3rem;font-weight:800;letter-spacing:.01em;line-height:1.15}
+.top p{font-size:.82rem;opacity:.85}
+.top .grow{flex:1;min-width:0}
+.langs{display:flex;gap:4px;flex-wrap:wrap}
+.langs button{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:4px 11px;font-size:.8rem;font-weight:700;cursor:pointer}
+.langs button[aria-pressed="true"]{background:#fff;color:var(--header)}
+main{padding-block:18px 64px;display:flex;flex-direction:column;gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.card h2{font-size:1.15rem;font-weight:800}
+.card h3{font-size:.95rem;font-weight:800;color:var(--brand-ink);margin-top:4px}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+.xs{font-size:.78rem}
+.note{background:var(--surface-2);border-radius:12px;padding:12px 14px;font-size:.9rem}
+.note.good{background:var(--good-soft)}
+.note.bad{background:var(--bad-soft);color:var(--ink)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:.95rem}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;font-weight:700;overflow-wrap:anywhere}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.field label,.lbl{font-size:.86rem;font-weight:700;color:var(--muted)}
+.field .req{color:var(--wine)}
+input,select,textarea{width:100%;min-height:48px;border:1px solid var(--line-strong);border-radius:12px;background:var(--surface);padding:10px 12px;font-size:16px;min-width:0}
+textarea{min-height:76px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-offset:0;border-color:var(--brand)}
+.field.err input,.field.err select,.field.err textarea,.photo.err,.sig.err{border-color:var(--bad);box-shadow:0 0 0 1px var(--bad)}
+.errmsg{font-size:.8rem;color:var(--bad);font-weight:700}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:10px 18px;border-radius:12px;border:1px solid var(--brand);background:var(--brand);color:var(--on-brand);font-weight:800;font-size:1rem;cursor:pointer;text-decoration:none;text-align:center}
+.btn.ghost{background:var(--surface);color:var(--brand-ink);border-color:var(--line-strong)}
+.btn.small{min-height:40px;padding:6px 12px;font-size:.88rem;border-radius:10px}
+.btn.danger{color:var(--bad);background:var(--surface);border-color:var(--line-strong)}
+.btn[disabled]{opacity:.55;cursor:wait}
+.btn svg{width:20px;height:20px;flex:none}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.stack{display:flex;flex-direction:column;gap:10px}
+.trav-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.badge{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:30px;border-radius:50%;background:var(--wine);color:#fff;font-weight:800;font-size:.9rem}
+.photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.photo{border:2px dashed var(--line-strong);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:0}
+.photo img{width:100%;max-height:220px;object-fit:contain;border-radius:8px;background:var(--surface-2)}
+.photo .pick{position:relative;overflow:hidden}
+.photo input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;min-height:0}
+.child{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;align-items:end;border-top:1px solid var(--line);padding-top:10px}
+.sig{border:1px solid var(--line-strong);border-radius:12px;background:#fff;touch-action:none;width:100%;height:160px;display:block}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:600}
+.check input{width:22px;height:22px;min-height:0;flex:none;margin-top:2px;accent-color:var(--brand)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--ink);color:var(--bg);padding:11px 16px;border-radius:12px;font-weight:700;font-size:.92rem;max-width:calc(100% - 32px);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.done-ic{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--good-soft);color:var(--good)}
+.done-ic svg{width:30px;height:30px}
+.linkbox{font-family:ui-monospace,Menlo,monospace;font-size:.8rem;overflow-wrap:anywhere;background:var(--surface-2);border-radius:10px;padding:10px 12px}
+.prop{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:10px}
+.prop:first-of-type{border-top:0;padding-top:0}
+.prop b{display:block}
+details summary{cursor:pointer;font-weight:700;color:var(--brand-ink)}
+ol.steps{margin:0;padding-inline-start:22px;display:flex;flex-direction:column;gap:6px;font-size:.92rem}
+.msgbox{white-space:pre-wrap;background:var(--surface-2);border-radius:12px;padding:12px 14px;font-size:.92rem}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap top-in">
+  <svg width="34" height="40" viewBox="0 0 34 40" aria-hidden="true"><rect x="3" y="3" width="28" height="34" rx="3" fill="none" stroke="#fff" stroke-width="2.2"/><circle cx="13" cy="15" r="4" fill="none" stroke="#fff" stroke-width="2"/><path d="M7 26a6 6 0 0 1 12 0M22 13h5M22 18h5M8 31h19" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  <div class="grow"><h1 id="h-title">Fiche de police</h1><p id="h-sub">Location courte durée au Maroc</p></div>
+  <div class="langs" id="langs" hidden></div>
+</div></header>
+<main class="wrap" id="app"></main>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+"use strict";
+/* =========================================================
+   Fiche de police : page voyageur (lien avec ?p=…) et outils hôte.
+   Aucune donnée n'est envoyée par cette page : le PDF est créé sur
+   l'appareil, puis le voyageur l'envoie lui-même à son hôte.
+   ========================================================= */
+const JSPDF_URL = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const pad = n => String(n).padStart(2, "0");
+const todayStr = () => { const d = new Date(); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; };
+const isDate = s => typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s);
+const ICON = {
+  camera: '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  send: '<path d="M4 12 20 4l-6 16-3-7z"/><path d="M11 13l9-9"/>',
+  save: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',
+  check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  trash: '<path d="M5 7h14M10 7V5h4v2M7 7l1 13h8l1-13"/>',
+  copy: '<rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6A1.5 1.5 0 0 0 14 4.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5"/>',
+  chat: '<path d="M4 5.5h16v10.5H10l-4.5 3.5V16H4z"/>',
+  mail: '<rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/>'
+};
+const icon = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[n] || ""}</svg>`;
+let toastT = null;
+function toast(m) { const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 3800); }
+function b64urlEncode(obj) { const s = btoa(unescape(encodeURIComponent(JSON.stringify(obj)))); return s.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""); }
+function b64urlDecode(s) { s = s.replace(/-/g, "+").replace(/_/g, "/"); while (s.length % 4) s += "="; return JSON.parse(decodeURIComponent(escape(atob(s)))); }
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } },
+  del(k) { try { localStorage.removeItem(k); } catch (e) {} }
+};
+async function shareOrDownload(file, { title = "", text = "" } = {}) {
+  if (navigator.canShare && navigator.share) {
+    let ok = false; try { ok = navigator.canShare({ files: [file] }); } catch (e) { ok = false; }
+    if (ok) { try { await navigator.share({ files: [file], title, text }); return "shared"; } catch (e) { if (e && e.name === "AbortError") return "cancel"; } }
+  }
+  downloadFile(file); return "downloaded";
+}
+function downloadFile(file) {
+  const url = URL.createObjectURL(file); const a = document.createElement("a");
+  a.href = url; a.download = file.name; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 8000);
+}
+async function copyText(text, okMsg) {
+  try { await navigator.clipboard.writeText(text); toast(okMsg); }
+  catch (e) { const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); toast(okMsg); } catch (x) { toast("Copie impossible : sélectionnez le texte à la main."); } ta.remove(); }
+}
+
+/* =========================================================
+   Textes du formulaire voyageur (français, anglais, arabe)
+   ========================================================= */
+const T = {
+  fr: {
+    title: "Fiche de police", sub: "Obligatoire pour tout séjour au Maroc",
+    welcome: "Bienvenue", intro: "La loi marocaine impose à chaque hébergement de déclarer ses voyageurs aux autorités. Merci de remplir une fiche par adulte avant votre arrivée.",
+    privacy: "Cette page n'envoie vos informations à personne. La fiche est créée sur votre téléphone, puis c'est vous qui l'envoyez à {host}.",
+    stay: "Votre séjour", property: "Logement", address: "Adresse", host: "Hôte", arrival: "Date d'arrivée", departure: "Date de départ", ref: "Réservation", planned: "Voyageurs prévus",
+    perAdult: "Une fiche par adulte (18 ans et plus). Les enfants mineurs s'ajoutent sur la fiche d'un parent.",
+    traveler: "Voyageur {n}", remove: "Retirer", addTraveler: "Ajouter un voyageur adulte",
+    sIdentity: "Identité", sDoc: "Pièce d'identité", sTravel: "Voyage", sChildren: "Enfants mineurs qui voyagent avec cette personne", sSign: "Signature",
+    nom: "Nom", prenom: "Prénom(s)", nomNaissance: "Nom de naissance (si différent)", sexe: "Sexe", F: "Femme", M: "Homme", choose: "Choisir…",
+    dateNaissance: "Date de naissance", lieuNaissance: "Lieu de naissance (ville, pays)", nationalite: "Nationalité", profession: "Profession",
+    adresse: "Adresse du domicile habituel", paysResidence: "Pays de résidence", telephone: "Téléphone (facultatif)",
+    docType: "Type de pièce", passeport: "Passeport", cin: "Carte nationale d'identité marocaine (CIN)", sejour: "Carte de séjour au Maroc", idEtrangere: "Carte d'identité étrangère",
+    docNumero: "Numéro du document", docDelivrance: "Date de délivrance", docLieu: "Lieu ou pays de délivrance", docExpiration: "Date d'expiration",
+    entreeMaroc: "Date d'entrée au Maroc", provenance: "Venant de (ville, pays)", destination: "Prochaine destination (ville, pays)",
+    photoRecto: "Photo de la pièce d'identité (page photo ou recto)", photoVerso: "Verso (pour une carte d'identité)", pick: "Prendre ou choisir une photo", replace: "Remplacer", photoHint: "Photo nette, sans reflet, où l'on peut lire tout le texte. Vous avez un PDF ? Faites une capture d'écran.",
+    addChild: "Ajouter un enfant", noChild: "Aucun enfant ajouté.",
+    signHint: "Signez dans le cadre avec le doigt.", clearSign: "Effacer la signature",
+    consent: "Je certifie que ces informations sont exactes et j'accepte qu'elles soient transmises à l'hébergeur pour la déclaration obligatoire aux autorités marocaines.",
+    create: "Créer ma fiche (PDF)", creating: "Création du PDF…",
+    required: "Champ obligatoire", latin: "Écrivez en lettres latines, comme sur la pièce d'identité.", dateOrder: "La date de départ doit être après la date d'arrivée.",
+    photoMissing: "Ajoutez la photo de la pièce d'identité.", signMissing: "Signature manquante.", consentMissing: "Cochez la case de confirmation.",
+    fix: "Il manque des informations : les champs à compléter sont signalés en rouge.",
+    doneTitle: "Votre fiche est prête", doneText: "Envoyez-la maintenant à {host}. Le fichier contient vos informations et la photo de votre pièce d'identité.",
+    send: "Envoyer la fiche", save: "Enregistrer le PDF", whatsapp: "Ouvrir WhatsApp avec {host}", email: "Écrire un e-mail à {host}",
+    attachHint: "Si l'envoi direct ne fonctionne pas : enregistrez le PDF, puis joignez-le dans WhatsApp ou dans un e-mail.",
+    edit: "Modifier la fiche", erase: "Effacer mes informations de ce téléphone", erased: "Vos informations ont été effacées de ce téléphone.",
+    draft: "Vos réponses sont gardées sur ce téléphone en attendant l'envoi (sans les photos ni la signature).",
+    pdfError: "Le PDF n'a pas pu être créé. Vérifiez la connexion internet et réessayez.", shared: "Fiche envoyée.", downloaded: "PDF enregistré.",
+    msgText: "Fiche de police pour {property} ({arr} → {dep})", badLink: "Ce lien est incomplet. Demandez à votre hôte de vous renvoyer le lien de la fiche de police."
+  },
+  en: {
+    title: "Police registration form", sub: "Required for every stay in Morocco",
+    welcome: "Welcome", intro: "Moroccan law requires every accommodation to register its guests with the authorities. Please fill in one form per adult before you arrive.",
+    privacy: "This page does not send your information to anyone. The form is created on your phone, and you send it to {host} yourself.",
+    stay: "Your stay", property: "Accommodation", address: "Address", host: "Host", arrival: "Arrival date", departure: "Departure date", ref: "Booking", planned: "Expected guests",
+    perAdult: "One form per adult (18 and over). Children under 18 are added to a parent's form.",
+    traveler: "Guest {n}", remove: "Remove", addTraveler: "Add an adult guest",
+    sIdentity: "Identity", sDoc: "Identity document", sTravel: "Travel", sChildren: "Children under 18 travelling with this person", sSign: "Signature",
+    nom: "Surname", prenom: "First name(s)", nomNaissance: "Birth name (if different)", sexe: "Sex", F: "Female", M: "Male", choose: "Choose…",
+    dateNaissance: "Date of birth", lieuNaissance: "Place of birth (city, country)", nationalite: "Nationality", profession: "Occupation",
+    adresse: "Home address", paysResidence: "Country of residence", telephone: "Phone (optional)",
+    docType: "Document type", passeport: "Passport", cin: "Moroccan national ID card (CIN)", sejour: "Moroccan residence card", idEtrangere: "Foreign ID card",
+    docNumero: "Document number", docDelivrance: "Date of issue", docLieu: "Place or country of issue", docExpiration: "Expiry date",
+    entreeMaroc: "Date of entry into Morocco", provenance: "Coming from (city, country)", destination: "Next destination (city, country)",
+    photoRecto: "Photo of your ID (photo page or front)", photoVerso: "Back (for an ID card)", pick: "Take or choose a photo", replace: "Replace", photoHint: "A sharp photo without glare, where all the text can be read. Have a PDF? Take a screenshot.",
+    addChild: "Add a child", noChild: "No child added.",
+    signHint: "Sign in the box with your finger.", clearSign: "Clear signature",
+    consent: "I certify that this information is accurate and I agree that it will be passed on to the host for the mandatory declaration to the Moroccan authorities.",
+    create: "Create my form (PDF)", creating: "Creating the PDF…",
+    required: "Required", latin: "Please use Latin letters, as on your ID document.", dateOrder: "The departure date must be after the arrival date.",
+    photoMissing: "Please add a photo of your ID document.", signMissing: "Signature missing.", consentMissing: "Please tick the confirmation box.",
+    fix: "Some information is missing: the fields to complete are shown in red.",
+    doneTitle: "Your form is ready", doneText: "Please send it to {host} now. The file contains your information and the photo of your ID document.",
+    send: "Send the form", save: "Save the PDF", whatsapp: "Open WhatsApp with {host}", email: "Email {host}",
+    attachHint: "If sending directly does not work: save the PDF, then attach it in WhatsApp or in an email.",
+    edit: "Edit the form", erase: "Delete my information from this phone", erased: "Your information has been deleted from this phone.",
+    draft: "Your answers are kept on this phone until you send the form (without the photos or the signature).",
+    pdfError: "The PDF could not be created. Check your internet connection and try again.", shared: "Form sent.", downloaded: "PDF saved.",
+    msgText: "Police registration form for {property} ({arr} → {dep})", badLink: "This link is incomplete. Please ask your host to send you the link again."
+  },
+  ar: {
+    title: "استمارة الشرطة", sub: "إلزامية لكل إقامة في المغرب",
+    welcome: "مرحباً بكم", intro: "يفرض القانون المغربي على كل مكان إقامة التصريح بنزلائه لدى السلطات. نرجو تعبئة استمارة لكل شخص بالغ قبل وصولكم.",
+    privacy: "هذه الصفحة لا ترسل معلوماتكم إلى أي جهة. يتم إنشاء الاستمارة على هاتفكم، ثم ترسلونها بأنفسكم إلى {host}.",
+    stay: "إقامتكم", property: "مكان الإقامة", address: "العنوان", host: "المضيف", arrival: "تاريخ الوصول", departure: "تاريخ المغادرة", ref: "الحجز", planned: "عدد النزلاء المتوقع",
+    perAdult: "استمارة لكل شخص بالغ (18 سنة فما فوق). يُضاف الأطفال القاصرون إلى استمارة أحد الوالدين.",
+    traveler: "النزيل {n}", remove: "حذف", addTraveler: "إضافة نزيل بالغ",
+    sIdentity: "الهوية", sDoc: "وثيقة الهوية", sTravel: "السفر", sChildren: "الأطفال القاصرون المرافقون لهذا الشخص", sSign: "التوقيع",
+    nom: "الاسم العائلي", prenom: "الاسم الشخصي", nomNaissance: "الاسم العائلي عند الولادة (إن كان مختلفاً)", sexe: "الجنس", F: "أنثى", M: "ذكر", choose: "اختر…",
+    dateNaissance: "تاريخ الازدياد", lieuNaissance: "مكان الازدياد (المدينة، البلد)", nationalite: "الجنسية", profession: "المهنة",
+    adresse: "عنوان السكن المعتاد", paysResidence: "بلد الإقامة", telephone: "الهاتف (اختياري)",
+    docType: "نوع الوثيقة", passeport: "جواز السفر", cin: "البطاقة الوطنية للتعريف الإلكترونية", sejour: "بطاقة الإقامة بالمغرب", idEtrangere: "بطاقة تعريف أجنبية",
+    docNumero: "رقم الوثيقة", docDelivrance: "تاريخ الإصدار", docLieu: "مكان أو بلد الإصدار", docExpiration: "تاريخ انتهاء الصلاحية",
+    entreeMaroc: "تاريخ الدخول إلى المغرب", provenance: "قادم من (المدينة، البلد)", destination: "الوجهة التالية (المدينة، البلد)",
+    photoRecto: "صورة وثيقة الهوية (صفحة الصورة أو الوجه الأمامي)", photoVerso: "الوجه الخلفي (لبطاقة التعريف)", pick: "التقاط أو اختيار صورة", replace: "استبدال", photoHint: "صورة واضحة بدون انعكاس، يمكن قراءة كل ما فيها. لديكم ملف PDF؟ التقطوا صورة للشاشة.",
+    addChild: "إضافة طفل", noChild: "لم تتم إضافة أي طفل.",
+    signHint: "وقّعوا داخل الإطار بإصبعكم.", clearSign: "مسح التوقيع",
+    consent: "أشهد بأن هذه المعلومات صحيحة، وأوافق على إرسالها إلى المضيف من أجل التصريح الإلزامي لدى السلطات المغربية.",
+    create: "إنشاء الاستمارة (PDF)", creating: "جارٍ إنشاء ملف PDF…",
+    required: "حقل إلزامي", latin: "يُرجى الكتابة بالحروف اللاتينية كما في وثيقة الهوية.", dateOrder: "يجب أن يكون تاريخ المغادرة بعد تاريخ الوصول.",
+    photoMissing: "يُرجى إضافة صورة وثيقة الهوية.", signMissing: "التوقيع ناقص.", consentMissing: "يُرجى تأكيد الخانة.",
+    fix: "بعض المعلومات ناقصة: الحقول المطلوب إكمالها مشار إليها باللون الأحمر.",
+    doneTitle: "استمارتكم جاهزة", doneText: "أرسلوها الآن إلى {host}. يحتوي الملف على معلوماتكم وصورة وثيقة هويتكم.",
+    send: "إرسال الاستمارة", save: "حفظ ملف PDF", whatsapp: "فتح واتساب مع {host}", email: "مراسلة {host} عبر البريد الإلكتروني",
+    attachHint: "إذا لم ينجح الإرسال المباشر: احفظوا ملف PDF ثم أرفقوه في واتساب أو في بريد إلكتروني.",
+    edit: "تعديل الاستمارة", erase: "حذف معلوماتي من هذا الهاتف", erased: "تم حذف معلوماتكم من هذا الهاتف.",
+    draft: "تُحفظ إجاباتكم على هذا الهاتف إلى حين الإرسال (بدون الصور والتوقيع).",
+    pdfError: "تعذّر إنشاء ملف PDF. تحققوا من الاتصال بالإنترنت وحاولوا مجدداً.", shared: "تم إرسال الاستمارة.", downloaded: "تم حفظ ملف PDF.",
+    msgText: "استمارة الشرطة — {property} ({arr} → {dep})", badLink: "هذا الرابط غير مكتمل. يُرجى أن تطلبوا من المضيف إعادة إرسال الرابط."
+  }
+};
+// Libellés de la fiche PDF (en français, langue de la déclaration)
+const PDF_LABEL = { nom: "Nom", prenom: "Prénom(s)", nomNaissance: "Nom de naissance", sexe: "Sexe", dateNaissance: "Date de naissance", lieuNaissance: "Lieu de naissance", nationalite: "Nationalité", profession: "Profession", adresse: "Domicile habituel", paysResidence: "Pays de résidence", telephone: "Téléphone", docType: "Pièce d'identité", docNumero: "Numéro", docDelivrance: "Délivrée le", docLieu: "Lieu de délivrance", docExpiration: "Expire le", entreeMaroc: "Entrée au Maroc le", provenance: "Venant de", destination: "Allant à" };
+const DOC_FR = { passeport: "Passeport", cin: "CIN (carte nationale marocaine)", sejour: "Carte de séjour au Maroc", idEtrangere: "Carte d'identité étrangère" };
+const FIELDS = [
+  { sec: "sIdentity", k: "nom", req: true }, { sec: "sIdentity", k: "prenom", req: true }, { sec: "sIdentity", k: "nomNaissance" },
+  { sec: "sIdentity", k: "sexe", type: "select", opts: ["F", "M"] }, { sec: "sIdentity", k: "dateNaissance", type: "date", req: true },
+  { sec: "sIdentity", k: "lieuNaissance", req: true }, { sec: "sIdentity", k: "nationalite", req: true }, { sec: "sIdentity", k: "profession" },
+  { sec: "sIdentity", k: "adresse", type: "textarea", req: true }, { sec: "sIdentity", k: "paysResidence", req: true }, { sec: "sIdentity", k: "telephone", type: "tel" },
+  { sec: "sDoc", k: "docType", type: "select", opts: ["passeport", "cin", "sejour", "idEtrangere"], req: true },
+  { sec: "sDoc", k: "docNumero", req: true }, { sec: "sDoc", k: "docDelivrance", type: "date" }, { sec: "sDoc", k: "docLieu" }, { sec: "sDoc", k: "docExpiration", type: "date" },
+  { sec: "sTravel", k: "entreeMaroc", type: "date", when: t => t.docType === "passeport" || t.docType === "idEtrangere" },
+  { sec: "sTravel", k: "provenance" }, { sec: "sTravel", k: "destination" }
+];
+const NON_LATIN = /[^\u0000-ɏḀ-ỿ‘’“”–—]/;
+
+/* =========================================================
+   Page voyageur
+   ========================================================= */
+const G = { lang: "fr", link: null, stay: { arr: "", dep: "" }, travelers: [], consent: false, pdf: null, done: false, showErrors: false };
+const DRAFT_KEY = () => "fiche-police-brouillon-" + (G.link ? G.link.id : "");
+const tr = (k, v = {}) => String((T[G.lang] && T[G.lang][k]) ?? T.fr[k] ?? k).replace(/\{(\w+)\}/g, (m, x) => (v[x] ?? m));
+const newTraveler = () => ({ id: Math.random().toString(36).slice(2, 9), docType: "", photos: { recto: null, verso: null }, children: [], signature: null });
+function fmtD(iso) {
+  if (!isDate(iso)) return "—";
+  const loc = G.lang === "en" ? "en-GB" : G.lang === "ar" ? "ar" : "fr-FR";
+  try { return new Date(iso + "T12:00:00").toLocaleDateString(loc, { day: "numeric", month: "long", year: "numeric", numberingSystem: "latn" }); } catch (e) { return iso; }
+}
+function saveDraft() {
+  if (!G.link) return;
+  const t = G.travelers.map(x => { const o = { ...x }; delete o.photos; delete o.signature; return o; });
+  store.set(DRAFT_KEY(), { stay: G.stay, travelers: t, lang: G.lang });
+}
+let draftT = null;
+const saveDraftSoon = () => { clearTimeout(draftT); draftT = setTimeout(saveDraft, 400); };
+function initGuest(params) {
+  let p;
+  try { p = b64urlDecode(params.get("p")); } catch (e) { p = null; }
+  const langParam = params.get("lang");
+  const nav = (navigator.language || "fr").slice(0, 2);
+  G.lang = T[langParam] ? langParam : (T[nav] ? nav : "fr");
+  if (!p || !p.n) { renderBadLink(); return; }
+  G.link = { id: String(p.id || p.n).replace(/[^\w-]/g, "").slice(0, 40), name: p.n, address: p.a || "", host: p.g || "", whatsapp: String(p.w || "").replace(/[^\d]/g, ""), email: p.e || "",
+    arr: isDate(params.get("arr")) ? params.get("arr") : "", dep: isDate(params.get("dep")) ? params.get("dep") : "", nb: parseInt(params.get("nb"), 10) || 0, ref: (params.get("ref") || "").slice(0, 80) };
+  const d = store.get(DRAFT_KEY(), null);
+  G.stay = { arr: G.link.arr, dep: G.link.dep };
+  if (d && Array.isArray(d.travelers) && d.travelers.length) {
+    G.travelers = d.travelers.map(x => ({ ...newTraveler(), ...x, photos: { recto: null, verso: null }, signature: null, children: Array.isArray(x.children) ? x.children : [] }));
+    if (d.stay) { G.stay.arr = G.stay.arr || d.stay.arr || ""; G.stay.dep = G.stay.dep || d.stay.dep || ""; }
+    if (!langParam && T[d.lang]) G.lang = d.lang;
+  } else G.travelers = [newTraveler()];
+  renderGuest();
+}
+function renderLangs() {
+  const el = $("#langs"); el.hidden = false;
+  el.innerHTML = [["fr", "FR"], ["en", "EN"], ["ar", "عربي"]].map(([k, l]) => `<button type="button" data-lang="${k}" aria-pressed="${G.lang === k}">${l}</button>`).join("");
+  document.documentElement.lang = G.lang; document.documentElement.dir = G.lang === "ar" ? "rtl" : "ltr";
+  $("#h-title").textContent = tr("title"); $("#h-sub").textContent = tr("sub");
+  document.title = tr("title") + (G.link ? " · " + G.link.name : "");
+}
+function renderBadLink() { renderLangs(); $("#app").innerHTML = `<section class="card"><h2>${esc(tr("title"))}</h2><p>${esc(tr("badLink"))}</p></section>`; }
+function fieldHTML(t, i, f) {
+  if (f.when && !f.when(t)) return "";
+  const id = `f-${t.id}-${f.k}`, v = t[f.k] ?? "", req = f.req || (f.k === "entreeMaroc");
+  const errs = G.showErrors ? fieldError(t, f) : "";
+  const lab = `<label for="${id}">${esc(tr(f.k))}${req ? ' <span class="req">*</span>' : ""}</label>`;
+  let input;
+  if (f.type === "select") input = `<select id="${id}" data-t="${i}" data-k="${f.k}"><option value="">${esc(tr("choose"))}</option>${f.opts.map(o => `<option value="${o}" ${v === o ? "selected" : ""}>${esc(tr(o))}</option>`).join("")}</select>`;
+  else if (f.type === "textarea") input = `<textarea id="${id}" data-t="${i}" data-k="${f.k}" rows="2" dir="ltr" autocomplete="street-address">${esc(v)}</textarea>`;
+  else input = `<input id="${id}" data-t="${i}" data-k="${f.k}" type="${f.type || "text"}" value="${esc(v)}" ${f.type === "date" ? 'dir="ltr"' : 'dir="ltr" autocomplete="off"'}${f.k === "nom" ? ' autocapitalize="characters"' : ""}>`;
+  return `<div class="field ${errs ? "err" : ""}" data-f="${t.id}-${f.k}">${lab}${input}${errs ? `<span class="errmsg">${esc(errs)}</span>` : ""}</div>`;
+}
+function fieldError(t, f) {
+  if (f.when && !f.when(t)) return "";
+  const v = String(t[f.k] ?? "").trim(), req = f.req || f.k === "entreeMaroc";
+  if (req && !v) return tr("required");
+  if (v && !f.type && NON_LATIN.test(v)) return tr("latin");
+  if (v && f.type === "textarea" && NON_LATIN.test(v)) return tr("latin");
+  return "";
+}
+function photoHTML(t, i, side) {
+  const img = t.photos[side], err = G.showErrors && side === "recto" && !img;
+  return `<div class="photo ${err ? "err" : ""}" data-photo="${t.id}-${side}"><span class="lbl">${esc(tr(side === "recto" ? "photoRecto" : "photoVerso"))}${side === "recto" ? ' <span class="req">*</span>' : ""}</span>
+    ${img ? `<img src="${img.data}" alt="">` : ""}
+    <span class="btn ghost small pick">${icon("camera")}${esc(tr(img ? "replace" : "pick"))}<input type="file" accept="image/*" data-t="${i}" data-side="${side}" aria-label="${esc(tr(side === "recto" ? "photoRecto" : "photoVerso"))}"></span>
+    ${err ? `<span class="errmsg">${esc(tr("photoMissing"))}</span>` : ""}</div>`;
+}
+function travelerHTML(t, i) {
+  const secs = ["sIdentity", "sDoc", "sTravel"].map(sec => `<h3>${esc(tr(sec))}</h3><div class="grid">${FIELDS.filter(f => f.sec === sec).map(f => fieldHTML(t, i, f)).join("")}</div>${sec === "sDoc" ? `<div class="photos">${photoHTML(t, i, "recto")}${photoHTML(t, i, "verso")}</div><p class="xs muted">${esc(tr("photoHint"))}</p>` : ""}`).join("");
+  const kids = t.children.map((c, j) => `<div class="child">
+      <div class="field"><label for="c-${t.id}-${j}-nom">${esc(tr("nom"))}</label><input id="c-${t.id}-${j}-nom" dir="ltr" data-t="${i}" data-c="${j}" data-k="nom" value="${esc(c.nom || "")}"></div>
+      <div class="field"><label for="c-${t.id}-${j}-prenom">${esc(tr("prenom"))}</label><input id="c-${t.id}-${j}-prenom" dir="ltr" data-t="${i}" data-c="${j}" data-k="prenom" value="${esc(c.prenom || "")}"></div>
+      <div class="field"><label for="c-${t.id}-${j}-dn">${esc(tr("dateNaissance"))}</label><input id="c-${t.id}-${j}-dn" type="date" dir="ltr" data-t="${i}" data-c="${j}" data-k="dateNaissance" value="${esc(c.dateNaissance || "")}"></div>
+      <button type="button" class="btn danger small" data-act="del-child" data-t="${i}" data-c="${j}">${esc(tr("remove"))}</button></div>`).join("");
+  const sigErr = G.showErrors && !t.signature;
+  return `<section class="card" data-trav="${t.id}">
+    <div class="trav-head"><h2><span class="badge">${i + 1}</span> ${esc(tr("traveler", { n: i + 1 }))}</h2>${G.travelers.length > 1 ? `<button type="button" class="btn danger small" data-act="del-trav" data-t="${i}">${icon("trash")}${esc(tr("remove"))}</button>` : ""}</div>
+    ${secs}
+    <h3>${esc(tr("sChildren"))}</h3>
+    ${kids || `<p class="small muted">${esc(tr("noChild"))}</p>`}
+    <div><button type="button" class="btn ghost small" data-act="add-child" data-t="${i}">${icon("plus")}${esc(tr("addChild"))}</button></div>
+    <h3>${esc(tr("sSign"))} <span class="req">*</span></h3>
+    <p class="small muted">${esc(tr("signHint"))}</p>
+    <canvas class="sig ${sigErr ? "err" : ""}" data-sig="${i}" aria-label="${esc(tr("sSign"))}"></canvas>
+    ${sigErr ? `<span class="errmsg">${esc(tr("signMissing"))}</span>` : ""}
+    <div><button type="button" class="btn ghost small" data-act="clear-sig" data-t="${i}">${esc(tr("clearSign"))}</button></div>
+  </section>`;
+}
+function renderGuest() {
+  renderLangs();
+  const L = G.link, app = $("#app");
+  if (G.done) { renderDone(); return; }
+  const stayErr = G.showErrors ? stayError() : "";
+  const sy = window.scrollY;
+  app.innerHTML = `
+  <section class="card"><h2>${esc(tr("welcome"))}</h2><p>${esc(tr("intro"))}</p><p class="note">${esc(tr("privacy", { host: L.host || L.name }))}</p></section>
+  <section class="card"><h2>${esc(tr("stay"))}</h2>
+    <dl class="kv"><dt>${esc(tr("property"))}</dt><dd>${esc(L.name)}</dd>${L.address ? `<dt>${esc(tr("address"))}</dt><dd>${esc(L.address)}</dd>` : ""}${L.host ? `<dt>${esc(tr("host"))}</dt><dd>${esc(L.host)}</dd>` : ""}${L.ref ? `<dt>${esc(tr("ref"))}</dt><dd>${esc(L.ref)}</dd>` : ""}${L.nb ? `<dt>${esc(tr("planned"))}</dt><dd>${L.nb}</dd>` : ""}</dl>
+    <div class="grid">
+      <div class="field ${G.showErrors && (!G.stay.arr || stayErr) ? "err" : ""}"><label for="s-arr">${esc(tr("arrival"))} <span class="req">*</span></label><input id="s-arr" type="date" dir="ltr" data-stay="arr" value="${esc(G.stay.arr)}"></div>
+      <div class="field ${G.showErrors && (!G.stay.dep || stayErr) ? "err" : ""}"><label for="s-dep">${esc(tr("departure"))} <span class="req">*</span></label><input id="s-dep" type="date" dir="ltr" data-stay="dep" value="${esc(G.stay.dep)}"></div>
+    </div>
+    ${stayErr ? `<span class="errmsg">${esc(stayErr)}</span>` : ""}
+    <p class="small muted">${esc(tr("perAdult"))}</p>
+  </section>
+  ${G.travelers.map(travelerHTML).join("")}
+  <div><button type="button" class="btn ghost" data-act="add-trav">${icon("plus")}${esc(tr("addTraveler"))}</button></div>
+  <section class="card">
+    <label class="check ${G.showErrors && !G.consent ? "err" : ""}"><input type="checkbox" id="consent" ${G.consent ? "checked" : ""}><span>${esc(tr("consent"))}</span></label>
+    ${G.showErrors && !G.consent ? `<span class="errmsg">${esc(tr("consentMissing"))}</span>` : ""}
+    ${G.showErrors && countErrors() ? `<p class="note bad">${esc(tr("fix"))}</p>` : ""}
+    <button type="button" class="btn" id="btn-create" data-act="create">${icon("check")}${esc(tr("create"))}</button>
+    <p class="xs muted">${esc(tr("draft"))}</p>
+  </section>`;
+  G.travelers.forEach((t, i) => setupSig(i));
+  window.scrollTo(0, sy);
+}
+function stayError() {
+  if (!G.stay.arr || !G.stay.dep) return tr("required");
+  if (G.stay.dep <= G.stay.arr) return tr("dateOrder");
+  return "";
+}
+function countErrors() {
+  let n = stayError() ? 1 : 0;
+  for (const t of G.travelers) {
+    for (const f of FIELDS) if (fieldError(t, f)) n++;
+    if (!t.photos.recto) n++;
+    if (!t.signature) n++;
+    for (const c of t.children) for (const k of ["nom", "prenom"]) if (c[k] && NON_LATIN.test(c[k])) n++;
+  }
+  if (!G.consent) n++;
+  return n;
+}
+function setupSig(i) {
+  const cv = $(`canvas[data-sig="${i}"]`); if (!cv) return;
+  const t = G.travelers[i], dpr = Math.max(1, window.devicePixelRatio || 1);
+  const w = cv.clientWidth, h = cv.clientHeight;
+  cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+  const ctx = cv.getContext("2d"); ctx.scale(dpr, dpr);
+  ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, w, h);
+  ctx.lineWidth = 2.4; ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.strokeStyle = "#1c1512";
+  if (t.signature) { const im = new Image(); im.onload = () => ctx.drawImage(im, 0, 0, w, h); im.src = t.signature; }
+  let drawing = false, last = null, moved = false;
+  const pos = e => { const r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+  cv.onpointerdown = e => { drawing = true; moved = false; last = pos(e); cv.setPointerCapture(e.pointerId); e.preventDefault(); };
+  cv.onpointermove = e => { if (!drawing) return; const p = pos(e); ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke(); last = p; moved = true; e.preventDefault(); };
+  const end = () => { if (!drawing) return; drawing = false; if (moved) { t.signature = cv.toDataURL("image/jpeg", 0.9); cv.classList.remove("err"); } };
+  cv.onpointerup = end; cv.onpointercancel = end; cv.onpointerleave = end;
+}
+function compressImage(file) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onerror = () => reject(new Error("read"));
+    r.onload = () => {
+      const im = new Image();
+      im.onerror = () => reject(new Error("image"));
+      im.onload = () => {
+        const max = 1700, sc = Math.min(1, max / Math.max(im.naturalWidth, im.naturalHeight));
+        const c = document.createElement("canvas"); c.width = Math.round(im.naturalWidth * sc); c.height = Math.round(im.naturalHeight * sc);
+        const x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0, c.width, c.height);
+        resolve({ data: c.toDataURL("image/jpeg", 0.82), w: c.width, h: c.height });
+      };
+      im.src = r.result;
+    };
+    r.readAsDataURL(file);
+  });
+}
+let jspdfP = null;
+function loadJsPDF() {
+  if (window.jspdf) return Promise.resolve(window.jspdf);
+  if (!jspdfP) jspdfP = new Promise((res, rej) => { const s = document.createElement("script"); s.src = JSPDF_URL; s.onload = () => window.jspdf ? res(window.jspdf) : rej(new Error("jspdf")); s.onerror = () => { jspdfP = null; rej(new Error("load")); }; document.head.appendChild(s); });
+  return jspdfP;
+}
+// jsPDF (polices standard) ne connaît que le jeu Windows-1252 : on retire les accents qu'il ne sait pas afficher.
+const CP1252 = "€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ";
+function pdfSafe(s) {
+  return Array.from(String(s ?? "")).map(ch => {
+    const c = ch.charCodeAt(0);
+    if (c < 256 || CP1252.includes(ch)) return ch.replace(/[  ]/g, " ");
+    const base = ch.normalize("NFD").replace(/[̀-ͯ]/g, "");
+    return base.charCodeAt(0) < 256 ? base : "?";
+  }).join("");
+}
+const fmtFR = iso => isDate(iso) ? `${iso.slice(8, 10)}/${iso.slice(5, 7)}/${iso.slice(0, 4)}` : "";
+async function buildPDF() {
+  const lib = await loadJsPDF();
+  const doc = new lib.jsPDF({ unit: "mm", format: "a4", compress: true });
+  const W = 210, M = 14, CW = W - 2 * M, L = G.link;
+  const brown = [58, 37, 24], wine = [90, 18, 38], muted = [107, 90, 85], line = [229, 217, 216];
+  const text = (s, x, y, o = {}) => { doc.setFont("helvetica", o.bold ? "bold" : "normal"); doc.setFontSize(o.size || 10); doc.setTextColor(...(o.color || [30, 24, 20])); doc.text(pdfSafe(s), x, y, o.align ? { align: o.align, maxWidth: o.maxWidth } : (o.maxWidth ? { maxWidth: o.maxWidth } : undefined)); };
+  const header = (title, sub) => {
+    doc.setFillColor(...brown); doc.rect(0, 0, W, 24, "F");
+    doc.setFillColor(247, 244, 240); doc.rect(0, 24, W, 2.6, "F"); doc.setFillColor(28, 21, 18);
+    for (let x = 0.8, i = 0; x < W; i++) { const w = [1.4, 2.4, 1.1, 2.8, 1.7][i % 5]; doc.rect(x, 24, w, 2.6, "F"); x += w + [1.8, 2.5, 2, 1.4, 2.2][i % 5]; }
+    text(title, M, 11, { bold: true, size: 14, color: [255, 255, 255] });
+    text(sub, M, 18, { size: 9, color: [255, 255, 255] });
+    text(`Créée le ${fmtFR(todayStr())}`, W - M, 18, { size: 8, color: [255, 255, 255], align: "right" });
+  };
+  const box = (y, rows, title) => {
+    const lh = 5.6, h = 7 + rows.length * lh + 2;
+    doc.setDrawColor(...line); doc.setFillColor(250, 247, 246); doc.roundedRect(M, y, CW, h, 2, 2, "FD");
+    text(title, M + 4, y + 5.5, { bold: true, size: 9, color: wine });
+    rows.forEach(([k, v], i) => { text(k, M + 4, y + 11 + i * lh, { size: 9, color: muted }); text(v || "—", M + 48, y + 11 + i * lh, { size: 9.5, bold: true, maxWidth: CW - 52 }); });
+    return y + h + 4;
+  };
+  const N = G.travelers.length;
+  G.travelers.forEach((t, i) => {
+    if (i) doc.addPage();
+    header("FICHE DE POLICE · FICHE INDIVIDUELLE D'HÉBERGEMENT", `Voyageur ${i + 1} sur ${N} · ${t.nom || ""} ${t.prenom || ""}`);
+    let y = 34;
+    y = box(y, [["Logement", L.name], ["Adresse", L.address], ["Hôte / gestionnaire", L.host]], "ÉTABLISSEMENT");
+    y = box(y, [["Date d'arrivée", fmtFR(G.stay.arr)], ["Date de départ", fmtFR(G.stay.dep)], ...(L.ref ? [["Réservation", L.ref]] : [])], "SÉJOUR");
+    const rows = FIELDS.filter(f => !f.when || f.when(t)).map(f => {
+      let v = t[f.k] || "";
+      if (f.type === "date") v = fmtFR(v);
+      if (f.k === "sexe") v = v === "F" ? "Féminin" : v === "M" ? "Masculin" : "";
+      if (f.k === "docType") v = DOC_FR[v] || "";
+      return [PDF_LABEL[f.k], v];
+    });
+    text("VOYAGEUR", M, y + 2, { bold: true, size: 9, color: wine }); y += 5;
+    rows.forEach(([k, v]) => {
+      const lines = doc.splitTextToSize(pdfSafe(v || "—"), CW - 56);
+      text(k, M, y + 4, { size: 9, color: muted });
+      doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(30, 24, 20); doc.text(lines, M + 52, y + 4);
+      y += Math.max(6, lines.length * 4.6 + 1.4);
+      doc.setDrawColor(...line); doc.setLineWidth(0.15); doc.line(M, y, M + CW, y);
+    });
+    y += 5;
+    if (t.children.length) {
+      text("ENFANTS MINEURS ACCOMPAGNANTS", M, y, { bold: true, size: 9, color: wine }); y += 5;
+      t.children.forEach(c => { text(`${c.nom || ""} ${c.prenom || ""}`.trim() || "—", M, y, { size: 10, bold: true }); text(c.dateNaissance ? `né(e) le ${fmtFR(c.dateNaissance)}` : "", M + 90, y, { size: 9.5, color: muted }); y += 5.5; });
+      y += 3;
+    }
+    if (y > 238) { doc.addPage(); header("FICHE DE POLICE · SIGNATURE", `Voyageur ${i + 1} sur ${N}`); y = 36; }
+    text("Je certifie l'exactitude des informations ci-dessus.", M, y, { size: 9.5 }); y += 4;
+    if (t.signature) { doc.setDrawColor(...line); doc.rect(M, y, 70, 28); doc.addImage(t.signature, "JPEG", M + 1, y + 1, 68, 26); }
+    text(`Fait le ${fmtFR(todayStr())}`, M + 78, y + 8, { size: 9.5 });
+    text(`${t.prenom || ""} ${t.nom || ""}`.trim(), M + 78, y + 14, { size: 9.5, bold: true });
+    // Pièce d'identité
+    const photos = [["Recto / page photo", t.photos.recto], ["Verso", t.photos.verso]].filter(x => x[1]);
+    if (photos.length) {
+      doc.addPage(); header("PIÈCE D'IDENTITÉ", `Voyageur ${i + 1} sur ${N} · ${t.nom || ""} ${t.prenom || ""} · ${DOC_FR[t.docType] || ""} n° ${t.docNumero || ""}`);
+      let py = 34; const maxH = photos.length > 1 ? 118 : 230;
+      photos.forEach(([lab, p]) => {
+        const r = Math.min(CW / p.w, maxH / p.h), w = p.w * r, h = p.h * r;
+        text(lab, M, py, { size: 9, bold: true, color: wine });
+        doc.addImage(p.data, "JPEG", M + (CW - w) / 2, py + 3, w, h);
+        py += h + 12;
+      });
+    }
+  });
+  const pages = doc.getNumberOfPages();
+  for (let p = 1; p <= pages; p++) { doc.setPage(p); text(`${L.name} · ${fmtFR(G.stay.arr)} - ${fmtFR(G.stay.dep)} · page ${p}/${pages} · Document confidentiel`, W / 2, 291, { size: 7.5, color: muted, align: "center" }); }
+  const slug = s => pdfSafe(s).normalize("NFD").replace(/[^\w]+/g, "-").replace(/^-|-$/g, "").toLowerCase().slice(0, 30);
+  const name = `fiche-police-${slug(L.name)}-${slug(G.travelers[0].nom || "voyageur")}-${G.stay.arr || todayStr()}.pdf`;
+  return new File([doc.output("blob")], name, { type: "application/pdf" });
+}
+function renderDone() {
+  const L = G.link, host = L.host || L.name;
+  const msg = tr("msgText", { property: L.name, arr: fmtD(G.stay.arr), dep: fmtD(G.stay.dep) });
+  $("#app").innerHTML = `<section class="card" style="align-items:flex-start">
+    <span class="done-ic">${icon("check")}</span><h2>${esc(tr("doneTitle"))}</h2><p>${esc(tr("doneText", { host }))}</p>
+    <div class="stack" style="width:100%">
+      <button type="button" class="btn" data-act="send">${icon("send")}${esc(tr("send"))}</button>
+      <button type="button" class="btn ghost" data-act="save">${icon("save")}${esc(tr("save"))}</button>
+      ${L.whatsapp ? `<a class="btn ghost" href="https://wa.me/${L.whatsapp}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">${icon("chat")}${esc(tr("whatsapp", { host }))}</a>` : ""}
+      ${L.email ? `<a class="btn ghost" href="mailto:${encodeURIComponent(L.email)}?subject=${encodeURIComponent(msg)}">${icon("mail")}${esc(tr("email", { host }))}</a>` : ""}
+    </div>
+    <p class="small muted">${esc(tr("attachHint"))}${L.whatsapp ? ` WhatsApp : +${esc(L.whatsapp)}` : ""}${L.email ? ` · ${esc(L.email)}` : ""}</p>
+    <div class="row"><button type="button" class="btn ghost small" data-act="edit">${esc(tr("edit"))}</button><button type="button" class="btn danger small" data-act="erase">${icon("trash")}${esc(tr("erase"))}</button></div>
+  </section>`;
+  window.scrollTo(0, 0);
+}
+async function guestAction(el) {
+  const a = el.dataset.act, i = +el.dataset.t;
+  if (a === "add-trav") { G.travelers.push(newTraveler()); saveDraft(); renderGuest(); setTimeout(() => { const c = $$(".card[data-trav]").pop(); if (c) c.scrollIntoView({ behavior: "smooth", block: "start" }); }, 30); }
+  else if (a === "del-trav") { G.travelers.splice(i, 1); saveDraft(); renderGuest(); }
+  else if (a === "add-child") { G.travelers[i].children.push({}); saveDraft(); renderGuest(); }
+  else if (a === "del-child") { G.travelers[i].children.splice(+el.dataset.c, 1); saveDraft(); renderGuest(); }
+  else if (a === "clear-sig") { G.travelers[i].signature = null; setupSig(i); }
+  else if (a === "create") {
+    if (countErrors()) { G.showErrors = true; renderGuest(); const e = $(".err"); if (e) e.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+    el.disabled = true; el.innerHTML = esc(tr("creating"));
+    try { G.pdf = await buildPDF(); G.done = true; saveDraft(); renderDone(); }
+    catch (e) { el.disabled = false; el.innerHTML = icon("check") + esc(tr("create")); toast(tr("pdfError")); }
+  }
+  else if (a === "send" && G.pdf) { const r = await shareOrDownload(G.pdf, { title: G.pdf.name, text: tr("msgText", { property: G.link.name, arr: fmtD(G.stay.arr), dep: fmtD(G.stay.dep) }) }); if (r === "shared") toast(tr("shared")); else if (r === "downloaded") toast(tr("downloaded")); }
+  else if (a === "save" && G.pdf) { downloadFile(G.pdf); toast(tr("downloaded")); }
+  else if (a === "edit") { G.done = false; renderGuest(); }
+  else if (a === "erase") { store.del(DRAFT_KEY()); G.travelers = [newTraveler()]; G.consent = false; G.pdf = null; G.done = false; G.showErrors = false; G.stay = { arr: G.link.arr, dep: G.link.dep }; renderGuest(); toast(tr("erased")); }
+}
+
+/* =========================================================
+   Outils hôte : logements, liens, partage avec la conciergerie
+   ========================================================= */
+const PROPS_KEY = "fiche-police-logements";
+const H = { props: [], editing: null, sel: "", arr: "", dep: "", nb: "", ref: "", lang: "fr" };
+const baseURL = () => location.origin + location.pathname;
+const propLink = p => `${baseURL()}?p=${b64urlEncode({ id: p.id, n: p.nom, a: [p.adresse, p.ville].filter(Boolean).join(", "), g: p.gestionnaire, w: p.whatsapp, e: p.email })}`;
+function bookingLink() {
+  const p = H.props.find(x => x.id === H.sel); if (!p) return "";
+  const u = new URL(propLink(p));
+  if (isDate(H.arr)) u.searchParams.set("arr", H.arr);
+  if (isDate(H.dep)) u.searchParams.set("dep", H.dep);
+  if (+H.nb > 0) u.searchParams.set("nb", String(+H.nb));
+  if (H.ref.trim()) u.searchParams.set("ref", H.ref.trim());
+  u.searchParams.set("lang", H.lang);
+  return u.toString();
+}
+const HOST_MSG = {
+  fr: "Bonjour,\n\nAu Maroc, la loi impose de remplir une fiche de police pour chaque voyageur adulte. Merci de la compléter avant votre arrivée en suivant ce lien (photo de la pièce d'identité et signature sur le téléphone) :\n{link}\n\nMerci beaucoup !",
+  en: "Hello,\n\nIn Morocco, the law requires a police registration form for each adult guest. Please complete it before your arrival using this link (photo of your ID and signature on your phone):\n{link}\n\nThank you very much!",
+  ar: "مرحباً،\n\nيفرض القانون المغربي تعبئة استمارة الشرطة لكل نزيل بالغ. نرجو تعبئتها قبل وصولكم عبر هذا الرابط (صورة وثيقة الهوية والتوقيع على الهاتف):\n{link}\n\nشكراً جزيلاً!"
+};
+function initHost() {
+  H.props = store.get(PROPS_KEY, []);
+  if (!Array.isArray(H.props)) H.props = [];
+  H.sel = H.props[0] ? H.props[0].id : "";
+  document.title = "Fiche de police · Espace hôte";
+  $("#h-sub").textContent = "Espace hôte et conciergerie";
+  renderHost();
+}
+function saveProps() { if (!store.set(PROPS_KEY, H.props)) toast("Ce navigateur n'enregistre pas les données : exportez vos logements."); }
+function propForm(p) {
+  p = p || { id: "", nom: "", adresse: "", ville: "", gestionnaire: "", whatsapp: "", email: "" };
+  const f = (k, l, ph, type = "text", req = false) => `<div class="field"><label for="pf-${k}">${l}${req ? ' <span class="req">*</span>' : ""}</label><input id="pf-${k}" type="${type}" value="${esc(p[k] || "")}" placeholder="${esc(ph)}"></div>`;
+  return `<section class="card" id="prop-form"><h2>${p.id ? "Modifier le logement" : "Ajouter un logement"}</h2>
+    <div class="grid">${f("nom", "Nom du logement", "ex. Appartement Mogador", "text", true)}${f("ville", "Ville", "ex. Essaouira")}</div>
+    ${f("adresse", "Adresse", "rue, quartier", "text", true)}
+    <div class="grid">${f("gestionnaire", "Hôte ou conciergerie (nom affiché)", "ex. votre prénom ou le nom de la conciergerie", "text", true)}${f("whatsapp", "WhatsApp qui reçoit les fiches", "+212 6 00 00 00 00", "tel")}</div>
+    ${f("email", "E-mail qui reçoit les fiches (facultatif)", "nom@exemple.com", "email")}
+    <p class="xs muted">Indiquez au moins un WhatsApp ou un e-mail : c'est là que les voyageurs enverront leur fiche.</p>
+    <div class="row"><button type="button" class="btn" data-h="save-prop" data-id="${esc(p.id)}">Enregistrer</button><button type="button" class="btn ghost" data-h="cancel-prop">Annuler</button></div>
+  </section>`;
+}
+function renderHost() {
+  const app = $("#app"), link = bookingLink(), p = H.props.find(x => x.id === H.sel);
+  const props = H.props.map(x => `<div class="prop"><div><b>${esc(x.nom)}</b><span class="xs muted">${esc([x.adresse, x.ville].filter(Boolean).join(", "))} · fiches vers ${esc(x.whatsapp ? "WhatsApp " + x.whatsapp : x.email || "—")}</span></div><div class="row"><button class="btn ghost small" data-h="edit-prop" data-id="${x.id}">Modifier</button><button class="btn danger small" data-h="del-prop" data-id="${x.id}">Supprimer</button></div></div>`).join("");
+  app.innerHTML = `
+  <section class="card"><h2>Espace hôte</h2>
+    <p>Créez ici le lien à envoyer à vos voyageurs. Ils remplissent la fiche de police sur leur téléphone, ajoutent la photo de leur pièce d'identité, signent, puis vous envoient un PDF par WhatsApp ou par e-mail.</p>
+    <p class="note">Rien n'est stocké en ligne : vos logements restent sur cet appareil, et les fiches arrivent directement chez vous.</p>
+    <p class="small muted">Pour l'avoir comme une application : ouvrez cette page dans Safari, touchez Partager, puis « Sur l'écran d'accueil ».</p></section>
+  ${H.editing !== null ? propForm(H.props.find(x => x.id === H.editing)) : ""}
+  <section class="card"><div class="trav-head"><h2>Mes logements</h2>${H.editing === null ? `<button class="btn ghost small" data-h="new-prop">${icon("plus")}Ajouter</button>` : ""}</div>
+    ${props || `<p class="muted">Aucun logement pour l'instant. Commencez par en ajouter un.</p>`}</section>
+  ${H.props.length ? `<section class="card"><h2>Lien pour une réservation</h2>
+    <div class="grid">
+      <div class="field"><label for="h-sel">Logement</label><select id="h-sel" data-hk="sel">${H.props.map(x => `<option value="${x.id}" ${x.id === H.sel ? "selected" : ""}>${esc(x.nom)}</option>`).join("")}</select></div>
+      <div class="field"><label for="h-lang">Langue du voyageur</label><select id="h-lang" data-hk="lang">${[["fr", "Français"], ["en", "English"], ["ar", "العربية"]].map(([k, l]) => `<option value="${k}" ${H.lang === k ? "selected" : ""}>${l}</option>`).join("")}</select></div>
+      <div class="field"><label for="h-arr">Arrivée</label><input id="h-arr" type="date" data-hk="arr" value="${esc(H.arr)}"></div>
+      <div class="field"><label for="h-dep">Départ</label><input id="h-dep" type="date" data-hk="dep" value="${esc(H.dep)}"></div>
+      <div class="field"><label for="h-nb">Nombre de voyageurs</label><input id="h-nb" type="number" min="1" max="20" inputmode="numeric" data-hk="nb" value="${esc(H.nb)}"></div>
+      <div class="field"><label for="h-ref">Nom ou référence de la réservation</label><input id="h-ref" data-hk="ref" value="${esc(H.ref)}" placeholder="facultatif"></div>
+    </div>
+    <div class="linkbox" id="h-link">${esc(link)}</div>
+    <div class="row"><button class="btn" data-h="copy-link">${icon("copy")}Copier le lien</button>${navigator.share ? `<button class="btn ghost" data-h="share-link">${icon("send")}Partager</button>` : ""}<a class="btn ghost" href="${esc(link)}" target="_blank" rel="noopener">Voir comme le voyageur</a></div>
+    <details><summary>Message prêt à envoyer</summary><div class="msgbox" id="h-msg" dir="${H.lang === "ar" ? "rtl" : "ltr"}" style="margin-top:8px">${esc(HOST_MSG[H.lang].replace("{link}", link))}</div><div class="row" style="margin-top:8px"><button class="btn ghost small" data-h="copy-msg">${icon("copy")}Copier le message</button></div></details>
+  </section>
+  <section class="card"><h2>Lien permanent du logement</h2>
+    <p class="small">Le même lien pour toutes les réservations de ce logement : le voyageur indique lui-même ses dates. Pratique pour les messages automatiques d'Airbnb ou vos modèles de messages.</p>
+    <p class="xs muted">Vous utilisez l'application Appartement Diabat ? Collez ce lien dans Messages, carte « Infos de l'appartement » : les dates de chaque réservation s'y ajoutent toutes seules.</p>
+    <div class="linkbox">${esc(p ? propLink(p) : "")}</div>
+    <div class="row"><button class="btn ghost small" data-h="copy-base">${icon("copy")}Copier le lien du logement</button></div>
+  </section>` : ""}
+  <section class="card"><h2>Partager des logements</h2>
+    <p class="small">Chaque personne, propriétaire ou conciergerie, garde ses logements sur son propre téléphone. Pour transmettre des logements à quelqu'un, exportez la liste puis importez-la sur l'autre téléphone. Chaque logement garde son WhatsApp de réception : modifiez-le si quelqu'un d'autre doit recevoir les fiches.</p>
+    <div class="row"><button class="btn ghost small" data-h="export">${icon("save")}Exporter mes logements</button><span class="btn ghost small pick" style="position:relative;overflow:hidden">Importer des logements<input type="file" accept=".json,application/json" id="h-import" style="position:absolute;inset:0;opacity:0;cursor:pointer;min-height:0"></span></div>
+    <p class="xs muted">L'adresse de cette page est la même pour tout le monde : envoyez-la à toute personne qui gère des logements, elle y crée ses propres liens.</p>
+  </section>
+  <section class="card"><h2>Quand vous recevez une fiche</h2>
+    <ol class="steps"><li>Ouvrez le PDF et vérifiez que tout est lisible, surtout la photo de la pièce d'identité.</li>
+    <li>Déclarez les voyageurs aux autorités selon la procédure de votre commune (commissariat, gendarmerie ou plateforme en ligne). La plupart des guides parlent d'un délai de 24 heures après l'arrivée : renseignez-vous auprès des autorités locales.</li>
+    <li>Rangez le PDF dans un endroit protégé (pas dans une conversation de groupe) et supprimez-le une fois la durée de conservation obligatoire passée.</li></ol>
+    <p class="xs muted">Ce document contient des données personnelles protégées par la loi marocaine 09-08. Il ne sert qu'à la déclaration obligatoire.</p>
+  </section>`;
+}
+function readPropForm(id) {
+  const g = k => ($("#pf-" + k).value || "").trim();
+  const p = { id: id || "l" + Date.now().toString(36), nom: g("nom"), adresse: g("adresse"), ville: g("ville"), gestionnaire: g("gestionnaire"), whatsapp: g("whatsapp").replace(/[^\d+]/g, ""), email: g("email") };
+  if (!p.nom || !p.adresse || !p.gestionnaire) return { error: "Complétez le nom du logement, l'adresse et le nom affiché." };
+  if (!p.whatsapp && !p.email) return { error: "Indiquez un WhatsApp ou un e-mail pour recevoir les fiches." };
+  if (p.whatsapp && p.whatsapp.replace(/\D/g, "").length < 8) return { error: "Numéro WhatsApp trop court : indiquez-le au format international, par ex. +212 6 …" };
+  return { p };
+}
+async function hostAction(el) {
+  const a = el.dataset.h, id = el.dataset.id;
+  if (a === "new-prop") { H.editing = ""; renderHost(); $("#pf-nom").focus(); }
+  else if (a === "edit-prop") { H.editing = id; renderHost(); $("#prop-form").scrollIntoView({ behavior: "smooth" }); }
+  else if (a === "cancel-prop") { H.editing = null; renderHost(); }
+  else if (a === "save-prop") {
+    const r = readPropForm(id); if (r.error) { toast(r.error); return; }
+    const i = H.props.findIndex(x => x.id === r.p.id); if (i >= 0) H.props[i] = r.p; else H.props.push(r.p);
+    H.sel = r.p.id; H.editing = null; saveProps(); renderHost(); toast("Logement enregistré.");
+  }
+  else if (a === "del-prop") { const p = H.props.find(x => x.id === id); if (p && confirmInline(el, `Supprimer « ${p.nom} » ?`)) { H.props = H.props.filter(x => x.id !== id); if (H.sel === id) H.sel = H.props[0] ? H.props[0].id : ""; saveProps(); renderHost(); toast("Logement supprimé."); } }
+  else if (a === "copy-link") copyText(bookingLink(), "Lien copié.");
+  else if (a === "share-link") { try { await navigator.share({ text: HOST_MSG[H.lang].replace("{link}", bookingLink()) }); } catch (e) {} }
+  else if (a === "copy-msg") copyText(HOST_MSG[H.lang].replace("{link}", bookingLink()), "Message copié.");
+  else if (a === "copy-base") { const p = H.props.find(x => x.id === H.sel); if (p) copyText(propLink(p), "Lien du logement copié."); }
+  else if (a === "export") {
+    const f = new File([JSON.stringify({ app: "fiche-police", version: 1, logements: H.props }, null, 2)], `fiche-police-logements-${todayStr()}.json`, { type: "application/json" });
+    const r = await shareOrDownload(f, { title: "Logements" }); if (r !== "cancel") toast("Liste des logements exportée.");
+  }
+}
+// Confirmation sans boîte de dialogue : un premier appui arme le bouton, le second confirme.
+function confirmInline(el, label) {
+  if (el.dataset.armed === "1") return true;
+  el.dataset.armed = "1"; const old = el.textContent; el.textContent = "Confirmer la suppression"; toast(label + " Touchez à nouveau pour confirmer.");
+  setTimeout(() => { if (document.body.contains(el)) { el.dataset.armed = ""; el.textContent = old; } }, 4000);
+  return false;
+}
+function importProps(file) {
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const d = JSON.parse(r.result); const list = Array.isArray(d) ? d : d.logements;
+      if (!Array.isArray(list)) throw new Error("format");
+      let n = 0;
+      for (const x of list) { if (!x || !x.nom) continue; const p = { id: String(x.id || "l" + Math.random().toString(36).slice(2, 8)), nom: String(x.nom), adresse: String(x.adresse || ""), ville: String(x.ville || ""), gestionnaire: String(x.gestionnaire || ""), whatsapp: String(x.whatsapp || ""), email: String(x.email || "") }; const i = H.props.findIndex(y => y.id === p.id); if (i >= 0) H.props[i] = p; else H.props.push(p); n++; }
+      if (!H.sel && H.props[0]) H.sel = H.props[0].id;
+      saveProps(); renderHost(); toast(`${n} logement${n > 1 ? "s" : ""} importé${n > 1 ? "s" : ""}.`);
+    } catch (e) { toast("Ce fichier n'est pas une liste de logements."); }
+  };
+  r.readAsText(file);
+}
+
+/* =========================================================
+   Événements
+   ========================================================= */
+const params = new URLSearchParams(location.search);
+const MODE = params.has("p") ? "guest" : "host";
+document.addEventListener("click", e => {
+  const l = e.target.closest("[data-lang]");
+  if (l && MODE === "guest") { G.lang = l.dataset.lang; saveDraft(); G.done ? (renderLangs(), renderDone()) : renderGuest(); return; }
+  const g = e.target.closest("[data-act]"); if (g && MODE === "guest") { guestAction(g); return; }
+  const h = e.target.closest("[data-h]"); if (h && MODE === "host") hostAction(h);
+});
+document.addEventListener("input", e => {
+  const t = e.target;
+  if (MODE === "host") { if (t.dataset.hk) { H[t.dataset.hk] = t.value; const box = $("#h-link"); if (box) { const link = bookingLink(); box.textContent = link; const m = $("#h-msg"); if (m) m.textContent = HOST_MSG[H.lang].replace("{link}", link); const v = box.parentElement.querySelector("a.btn"); if (v) v.href = link; } } return; }
+  if (t.dataset.stay) { G.stay[t.dataset.stay] = t.value; saveDraftSoon(); return; }
+  if (t.dataset.t !== undefined && t.dataset.k) {
+    const tv = G.travelers[+t.dataset.t]; if (!tv) return;
+    if (t.dataset.c !== undefined) tv.children[+t.dataset.c][t.dataset.k] = t.value; else tv[t.dataset.k] = t.value;
+    if (G.showErrors) { const fe = t.closest(".field"); if (fe && fe.classList.contains("err") && t.value.trim()) fe.classList.remove("err"); }
+    saveDraftSoon();
+  }
+});
+document.addEventListener("change", async e => {
+  const t = e.target;
+  if (MODE === "host") {
+    if (t.id === "h-import" && t.files[0]) { importProps(t.files[0]); t.value = ""; return; }
+    if (t.dataset.hk === "sel" || t.dataset.hk === "lang") { H[t.dataset.hk] = t.value; renderHost(); }
+    return;
+  }
+  if (t.id === "consent") { G.consent = t.checked; return; }
+  if (t.type === "file" && t.dataset.side) {
+    const f = t.files && t.files[0]; if (!f) return;
+    try { const img = await compressImage(f); G.travelers[+t.dataset.t].photos[t.dataset.side] = img; renderGuest(); }
+    catch (err) { toast(G.lang === "fr" ? "Cette image n'a pas pu être lue. Essayez une photo (JPEG ou PNG)." : G.lang === "ar" ? "تعذّرت قراءة هذه الصورة. جرّبوا صورة أخرى." : "This image could not be read. Try another photo."); }
+    return;
+  }
+  if (t.dataset.k === "docType") { renderGuest(); }
+});
+if (MODE === "guest") initGuest(params); else initHost();
+if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) { try { navigator.serviceWorker.register("sw.js").catch(() => {}); } catch (e) {} }
+</script>
+</body>
+</html>
